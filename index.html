@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=neon|outline|emboss|shadow-multiple">
+    <style>
+        #resultado{
+            width: 800px;
+            margin: auto;
+            padding: 0px;
+            vertical-align: bottom;
+            margin-top: 3%;
+            height: 100%;
+        }
+        #resultado button{
+            padding: 2px;
+            float: right;
+        }
+        h4{
+            display: inline-block;
+            text-decoration: none;
+            font-size: 12pt;
+            padding: 8px;
+            font-weight: normal;
+        }
+        @media screen and (max-width: 1336px){
+            #resultado{
+                width: 500px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Lista de Tarefas</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#" class="font-effect-outline" onclick="cadastrar()">CADASTRAR</a></li>
+            <li><a href="#" class="font-effect-outline" onclick="exibir()">EXIBIR</a></li>
+        </ul>
+    </nav>
+    <main>
+        <div id="cadastrar" style="display: block;">
+            <h2 style="font-family: 'Times New Roman', Times, serif;">Adicionar Tarefas</h2>
+            <p>Descreva a Tarefa: <input type="text" id="txt" placeholder="Ex: Ler um livro."></p>
+            <p style="padding: 0; padding-bottom: 42px;">Insira o Intervalo: <input type="text" id="txt2" placeholder="Ex: Ler um livro no intervalo da escola."></p>
+            <button onclick="adicionar()">ADICIONAR</button>
+        </div>
+        <div id="exibir" style="display: none;">
+            <h2>Tarefas Adicionadas: </h2>
+            <p id="resultado">
+                
+            </p>
+        </div>
+    </main>
+    <script>
+        function adicionar(){
+            const txt1 = (document.querySelector("#txt").value)
+            const br = document.createElement('br')
+            const txt2 = (document.querySelector("#txt2").value)
+            const concluir = document.createElement('button')
+            const editar = document.createElement('button')
+            concluir.innerHTML= "Concluída"
+            editar.innerHTML = "Editar"
+            const novaLi = document.createElement('h4');
+            const excluir = document.createElement('button');
+            excluir.innerHTML= "Remover Tarefa";
+            novaLi.innerHTML = "TAREFA: "+ txt1 + "<br> DETALHAMENTO: " + txt2;
+            concluir.addEventListener('click', function() {
+                if (novaLi.style.textDecoration == "line-through"){
+                    novaLi.style.textDecoration = "none";
+                }else{
+                novaLi.style.textDecoration = "line-through";
+            }}) 
+            excluir.addEventListener('click', function(){
+                novaLi.remove()
+                excluir.remove()
+                br.remove()
+                editar.remove()
+                concluir.remove()
+            })
+            editar.addEventListener('click', function(){
+                const ed = window.prompt('Entre com o Texto que deseja inserir')
+                const eddet = window.prompt("Entre com o detalhamento")
+                novaLi.innerHTML = "TAREFA: "+ ed + "<br> DETALHAMENTO: " + eddet;
+            })
+            document.getElementById("resultado").appendChild(novaLi);
+            document.getElementById("resultado").appendChild(excluir);
+            document.getElementById("resultado").appendChild(concluir);
+            document.getElementById("resultado").appendChild(editar);
+            document.getElementById('resultado').appendChild(br)
+            
+            document.querySelector("#txt").value = ""
+            document.querySelector("#txt2").value = ""
+        }
+        function exibir(){
+            document.getElementById("cadastrar").style.display = "none";
+            document.getElementById("exibir").style.display = "block";
+        }
+        function cadastrar(){
+            document.getElementById("cadastrar").style.display = "block";
+            document.getElementById("exibir").style.display = "none";
+        }
+    </script>
+</body>
+</html>
