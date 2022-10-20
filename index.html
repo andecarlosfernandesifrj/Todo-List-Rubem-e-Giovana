@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=neon|outline|emboss|shadow-multiple">
     <style>
+        body{
+            display: flexbox;
+        }
         #resultado{
             width: 800px;
             margin: auto;
@@ -33,6 +36,35 @@
                 width: 500px;
             }
         }
+        #login{
+            background-color: blueviolet;
+            display: flex;
+            border: 2px solid #555;
+            border-radius: 5px;
+            font-size: 14px;
+            padding: 15px;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            border:0;
+        }
+        .principal{
+            background-color: blueviolet;
+            display: block;
+            border: 2px solid #555;
+            border-radius: 5px;
+            font-size: 14px;
+            
+            max-width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+        #titulo{
+            padding: 30px 40px;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
     </style>
 </head>
 <body>
@@ -45,7 +77,7 @@
             <li><a href="#" class="font-effect-outline" onclick="exibir()">EXIBIR</a></li>
         </ul>
     </nav>
-    <main>
+    <main style="display:none">
         <div id="cadastrar" style="display: block;">
             <h2 style="font-family: 'Times New Roman', Times, serif;">Adicionar Tarefas</h2>
             <p>Descreva a Tarefa: <input type="text" id="txt" placeholder="Ex: Ler um livro."></p>
@@ -59,6 +91,19 @@
             </p>
         </div>
     </main>
+    <div class="principal">
+        <div id="titulo">
+            <h2>Criar Conta</h2>
+        </div>
+        <div id="login">
+            <input type="text" placeholder="Nome"><br>
+            <input type="text" placeholder="Login"><br>
+            <input type="email" placeholder="E-mail"><br>
+            <input type="password" placeholder="Senha"><br>
+            <input type="password" placeholder="Confirmar Senha"><br>
+            <button>Enviar</button>
+        </div>
+    </div>
     <script>
         function adicionar(){
             const txt1 = (document.querySelector("#txt").value)
